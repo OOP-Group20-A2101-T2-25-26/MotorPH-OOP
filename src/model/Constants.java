@@ -10,8 +10,9 @@ public class Constants {
     
     // Government deduction rates
     public static final double SSS_RATE = 0.045;          // 4.5% of gross
-    public static final double PHILHEALTH_RATE = 0.035;   // 3.5% of gross
-    public static final double PAGIBIG_RATE = 0.02;       // 2% of gross
+    public static final double PHILHEALTH_RATE = 0.05;   // 5% of gross as of 2026-Feb
+    public static final double PAGIBIG_RATE_HI = 0.02;   // 2% of gross as of 2026-Feb
+    public static final double PAGIBIG_RATE_LO = 0.01;   // 1% of gross as of 2026-Feb
     public static final double TAX_RATE = 0.15;           // 15% tax rate
     
     // Maximum values for deductions

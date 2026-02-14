@@ -1,26 +1,19 @@
 package view;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.util.List;
+/**
+ *
+ * @author Vladimir Bernardo
+ */
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableRowSorter;
-import model.Constants;
-import model.Employee;
-import model.EmployeeDatabase;
 
 public abstract class mainMenuFunctions extends JFrame {
     
-    protected JFrame frames;
-
-    public mainMenuFunctions() {
-        //initializeBasicFrame();
+    public mainMenuFunctions(String titlebar) {
+        setTitle(titlebar);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setUndecorated(false);
     }
-
-    protected abstract void initializeBasicFrame();
-    protected abstract void setupComponents();
+    // windows must implement this to build its UI
+    protected abstract void initUI();
 }

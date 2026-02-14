@@ -19,19 +19,29 @@ public class adminUI extends mainMenuFunctions {
     private DefaultTableModel tableModel;
     private TableRowSorter<DefaultTableModel> sorter;
     private JTextField searchField;
+    private JButton payrollButton;
     private JButton viewButton;
     private JButton newButton;
     private JButton adminPanelButton;
 
+    public adminUI() {
+        super("MotorPH - Employee Management");
+        initUI();
+    }
+    
     @Override
-    protected void initializeBasicFrame() {
-        frames = new JFrame();
-        frames.setTitle("MotorPH Payroll System");
-        frames.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        frames.setSize(UIConstants.MAIN_WINDOW_SIZE);
-        frames.setLocationRelativeTo(null);
-        frames.setMinimumSize(UIConstants.MAIN_WINDOW_SIZE);
-        frames.setUndecorated(true);
+    protected void initUI() {
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        setSize(UIConstants.MAIN_WINDOW_SIZE);
+        setMinimumSize(UIConstants.MAIN_WINDOW_SIZE);
+        
+        //let us go back to login
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                logOUT();
+            }
+        });
         
         try {
             System.out.println("Loading application icon...");
@@ -47,21 +57,14 @@ public class adminUI extends mainMenuFunctions {
             if (iconUrl != null) {
                 System.out.println("Icon found at: " + iconUrl);
                 ImageIcon icon = new ImageIcon(iconUrl);
-                frames.setIconImage(icon.getImage());
+                setIconImage(icon.getImage());
             }
         }
         catch (Exception e) {
             System.err.println("ERROR loading application icon: " + e.getMessage());
             e.printStackTrace();
         }
-        
-        
-        setupComponents();
-        frames.setVisible(true);
-    }
-    
-    @Override
-    protected void setupComponents() {
+
         // Create main panel with padding
         JPanel mainPanel = new JPanel(new BorderLayout(0, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
@@ -69,17 +72,11 @@ public class adminUI extends mainMenuFunctions {
         mainPanel.add(createHeaderPanel(), BorderLayout.NORTH);
         mainPanel.add(createContentPanel(), BorderLayout.CENTER);
         //frames.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        frames.setContentPane(mainPanel);
+        setContentPane(mainPanel);
         refreshTable();
         
-
     }
 
-    public static void main(String[] args) {
-        new regularUI();
-        
-    }
-    
     private JPanel createHeaderPanel() {
         // Create main header panel
         JPanel headerPanel = new JPanel(new BorderLayout());
@@ -94,11 +91,11 @@ public class adminUI extends mainMenuFunctions {
         // Load and scale the logo
         try {
             System.out.println("Loading header logo...");
-            java.net.URL logoUrl = AdminMainFrame.class.getResource("/view/assets/logo.png");
+            java.net.URL logoUrl = adminUI.class.getResource("/view/assets/logo.png");
             if (logoUrl == null) {
                 System.err.println("ERROR: Logo resource not found in classpath: /view/assets/logo.png");
                 // Try alternate path
-                logoUrl = AdminMainFrame.class.getResource("assets/logo.png");
+                logoUrl = adminUI.class.getResource("assets/logo.png");
                 if (logoUrl == null) {
                     System.err.println("ERROR: Logo not found in alternate path: assets/logo.png");
                 }
@@ -148,7 +145,7 @@ public class adminUI extends mainMenuFunctions {
         searchLabel.setFont(UIConstants.LABEL_FONT);
         
         searchField = new JTextField();
-        searchField.setPreferredSize(new Dimension(290, 25));
+        searchField.setPreferredSize(new Dimension(270, 25));
         searchField.setToolTipText("Search by name or employee number");
         
         searchPanel.add(searchLabel);
@@ -156,24 +153,29 @@ public class adminUI extends mainMenuFunctions {
 
         // Button panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        payrollButton = new JButton("Employee Payroll");
         viewButton = new JButton("View Details");
         newButton = new JButton("New Employee");
         adminPanelButton = new JButton("Admin Panel");
         
         // Style buttons
         Dimension buttonSize = new Dimension(120, 30);
+        payrollButton.setPreferredSize(new Dimension(150, 30));
         viewButton.setPreferredSize(buttonSize);
         newButton.setPreferredSize(buttonSize);
         adminPanelButton.setPreferredSize(buttonSize);
         
+        payrollButton.setFont(UIConstants.BUTTON_FONT);
         viewButton.setFont(UIConstants.BUTTON_FONT);
         newButton.setFont(UIConstants.BUTTON_FONT);
         adminPanelButton.setFont(UIConstants.BUTTON_FONT);
         
+        payrollButton.addActionListener(e -> openPayroll());
         viewButton.addActionListener(e -> viewSelectedEmployee());
         newButton.addActionListener(e -> openNewEmployeeForm());
         adminPanelButton.addActionListener(e -> openAdminPanel());
 
+        buttonPanel.add(payrollButton);
         buttonPanel.add(viewButton);
         buttonPanel.add(newButton);
         buttonPanel.add(adminPanelButton);
@@ -294,6 +296,24 @@ public class adminUI extends mainMenuFunctions {
             tableModel.addRow(rowData);
         }
     }
+    
+    private void openPayroll() {
+        int selectedRow = employeeTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            selectedRow = employeeTable.convertRowIndexToModel(selectedRow);
+            String empNum = (String) tableModel.getValueAt(selectedRow, 0);
+            Employee employee = EmployeeDatabase.findByEmployeeNumber(empNum);
+            if (employee != null) {
+                PayrollEntryFrame payFrame = new PayrollEntryFrame(employee);
+                payFrame.setVisible(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,
+                Constants.NO_SELECTION_ERROR,
+                "No Selection",
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
     private void viewSelectedEmployee() {
         int selectedRow = employeeTable.getSelectedRow();
@@ -322,5 +342,13 @@ public class adminUI extends mainMenuFunctions {
         AdminPanelUI adminPanel = new AdminPanelUI(this);
         adminPanel.setVisible(true);
     }
+    
+    private void logOUT() {
+        JOptionPane.showMessageDialog(null, "Logged Out");
+        this.dispose(); //logout or kill the Main App
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
+    }
+    
 }
 

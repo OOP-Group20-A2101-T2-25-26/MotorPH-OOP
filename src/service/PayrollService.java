@@ -72,7 +72,7 @@ public class PayrollService {
         );
         
         double pagibigDeduction = Math.min(
-            grossPay * Constants.PAGIBIG_RATE,
+            grossPay * Constants.PAGIBIG_RATE_HI,
             Constants.PAGIBIG_MAX_CONTRIBUTION
         );
         

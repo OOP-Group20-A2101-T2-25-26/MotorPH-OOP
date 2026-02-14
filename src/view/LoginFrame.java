@@ -149,7 +149,7 @@ public class LoginFrame extends JFrame {
                     EmployeeDatabase.loadEmployees(); 
                     // Start the main application
                     System.out.println("DEBUG: Attempting to create AdminMainFrame."); // Added for console feedback
-                    AdminMainFrame mainApp1 = new AdminMainFrame();
+                    adminUI mainApp1 = new adminUI();
                     mainApp1.setVisible(true);
                 } catch (Exception ex) {
                     // Log the exception for debugging
@@ -177,7 +177,7 @@ public class LoginFrame extends JFrame {
                     EmployeeDatabase.loadEmployees(); 
                     // Start the main application
                     System.out.println("DEBUG: Attempting to create EmployeeMainFrame."); // Added for console feedback
-                    EmployeeMainFrame mainApp2 = new EmployeeMainFrame();
+                    regularUI mainApp2 = new regularUI();
                     mainApp2.setVisible(true);
                 } catch (Exception ex) {
                     // Log the exception for debugging
