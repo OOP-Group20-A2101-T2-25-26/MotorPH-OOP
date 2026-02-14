@@ -34,9 +34,9 @@ public class AdminPanelUI extends JFrame {
     private DefaultTableModel tableModel;
     private JButton updateButton, deleteButton;
     private String selectedEmployeeNumber = null;
-    private final AdminMainFrame parentFrame;
+    private final adminUI parentFrame;
 
-    public AdminPanelUI(AdminMainFrame parentFrame) {
+    public AdminPanelUI(adminUI parentFrame) {
         this.parentFrame = parentFrame;
         setTitle("Admin Panel");
         setSize(1280, 720);

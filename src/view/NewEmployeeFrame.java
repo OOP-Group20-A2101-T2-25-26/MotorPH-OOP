@@ -9,7 +9,7 @@ import model.Employee;
 import model.EmployeeDatabase;
 
 public class NewEmployeeFrame extends JFrame {
-    private final AdminMainFrame parentFrame;
+    private final adminUI parentFrame;
     private final JTextField 
                         employeeNoField, 
                         lastNameField, 
@@ -33,7 +33,7 @@ public class NewEmployeeFrame extends JFrame {
     private final JSpinner monthSpinner;
     private final JSpinner daySpinner;
 
-    public NewEmployeeFrame(AdminMainFrame parent) {
+    public NewEmployeeFrame(adminUI parent) {
         this.parentFrame = parent;
         setTitle("New Employee");
         setSize(500, 600);
