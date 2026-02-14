@@ -1,4 +1,4 @@
-USERNAME,PASSWORD
+USERNAME,PASSWORD,TYPE
 admin,admin,0
 ehernandez,itadmin,0
 mgarcia,ceo,1
