@@ -4,23 +4,26 @@ import java.awt.*;
 import javax.swing.*;
 import model.Employee;
 
-public class EmployeeDetailFrame extends JFrame {
+public class EmployeeDetailFrame extends mainMenuFunctions {
+    
     private final Employee employee;
+    
     public EmployeeDetailFrame(Employee employee) {
+        super("Viewing Employee: " + employee.getFirstName() + " " + employee.getLastName());
         
-        //check if valid
+        //check if employee valid
         if (employee == null) {
             throw new IllegalArgumentException("Employee cannot be null");
         }
-        
         this.employee = employee;
+        initUI();
+    }
+    
+    @Override
+    protected void initUI() {
         
         //window properties
-        setTitle("View Employee: " + employee.getFirstName() + " " + employee.getLastName());
         setSize(UIConstants.DETAIL_WINDOW_SIZE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Create main panel
         JPanel mainPanel = new JPanel(new GridBagLayout());

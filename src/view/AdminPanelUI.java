@@ -8,8 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import model.Employee;
 import model.EmployeeDatabase;
 
-public class AdminPanelUI extends JFrame {
-    private final JTextField 
+public class AdminPanelUI extends mainMenuFunctions {
+    private JTextField 
                         employeeNoField, 
                         lastNameField, 
                         firstNameField, 
@@ -37,12 +37,15 @@ public class AdminPanelUI extends JFrame {
     private final adminUI parentFrame;
 
     public AdminPanelUI(adminUI parentFrame) {
+        super("Employee Administration");
         this.parentFrame = parentFrame;
-        setTitle("Admin Panel");
+
+        initUI();
+    }
+    
+    @Override
+    protected void initUI() {
         setSize(1280, 720);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
 
         // Employee Data Table
