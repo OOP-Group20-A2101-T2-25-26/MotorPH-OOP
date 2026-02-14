@@ -26,10 +26,17 @@ public class AdminMainFrame extends JFrame {
         System.out.println("DEBUG: AdminMainFrame constructor invoked.");
         System.out.println("AdminMainFrame constructor entered.");
         setTitle("MotorPH Employee Management System");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setSize(UIConstants.MAIN_WINDOW_SIZE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(800, 600));
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                logOUT();
+            }
+        });
 
         // Set application icon
         try {
@@ -307,5 +314,12 @@ public class AdminMainFrame extends JFrame {
         AdminPanelUI adminPanel = new AdminPanelUI(this);
         adminPanel.setVisible(true);
     }
-
+    
+    private void logOUT() {
+        JOptionPane.showMessageDialog(null, "Logged Out");
+        this.dispose(); //logout or kill the Main App
+        JFrame newFrame = new JFrame("New Window");
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
+    }
 }
