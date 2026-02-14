@@ -20,8 +20,8 @@ A Java Swing-based desktop application for managing employee data, attendance, a
 4. The full MotorPH Employee App interface will launch
 
 ## Authors:
-Aristides Panlilio
-Vladimir Bernardo
+Aristides Panlilio  
+Vladimir Bernardo  
 
 ## Original Authors from Computer Programming 2:
 Angela Mae Ortega  
