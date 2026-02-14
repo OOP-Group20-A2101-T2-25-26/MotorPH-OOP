@@ -25,11 +25,18 @@ public class EmployeeMainFrame extends JFrame {
     public EmployeeMainFrame() {
         System.out.println("DEBUG: EmployeeMainFrame constructor invoked.");
         System.out.println("EmployeeMainFrame constructor entered.");
-        setTitle("MotorPH Employee Management System");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("MotorPH Employee Portal");
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setSize(UIConstants.MAIN_WINDOW_SIZE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(800, 600));
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                logOUT();
+            }
+        });
 
         // Set application icon
         try {
@@ -106,7 +113,7 @@ public class EmployeeMainFrame extends JFrame {
         }
 
         // Create title label
-        JLabel titleLabel = new JLabel("MotorPH Employee Management System");
+        JLabel titleLabel = new JLabel("MotorPH Employee Portal");
         titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel);
@@ -133,7 +140,7 @@ public class EmployeeMainFrame extends JFrame {
         searchLabel.setFont(UIConstants.LABEL_FONT);
         
         searchField = new JTextField();
-        searchField.setPreferredSize(new Dimension(400, 25));
+        searchField.setPreferredSize(new Dimension(530, 25));
         searchField.setToolTipText("Search by name or employee number");
         
         searchPanel.add(searchLabel);
@@ -292,6 +299,14 @@ public class EmployeeMainFrame extends JFrame {
                 "No Selection",
                 JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+    
+    private void logOUT() {
+        JOptionPane.showMessageDialog(null, "Logged Out");
+        this.dispose(); //logout or kill the Main App
+        JFrame newFrame = new JFrame("New Window");
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setVisible(true);
     }
 
 }
