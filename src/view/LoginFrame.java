@@ -10,19 +10,23 @@ import javax.swing.*;
 import model.EmployeeDatabase; // Added for loading data
 // view.EmployeeMainFrame import removed as it's in the same package
 
-public class LoginFrame extends JFrame {
-    private final JTextField usernameField;
-    private final JPasswordField passwordField;
-    private final JButton loginButton;
-    private final JButton resetButton;
-    private final JLabel statusLabel;
+public class LoginFrame extends mainMenuFunctions {
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+    private JButton resetButton;
+    private JLabel statusLabel;
 
     public LoginFrame() {
-        setTitle("MotorPH Employee App Login");
+        super("MotorPH Employee App Login");
+        initUI();
+    }
+    
+    @Override
+    protected void initUI() {
         setSize(400, 250);
-        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Center the window
+        
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
