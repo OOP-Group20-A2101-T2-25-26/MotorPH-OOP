@@ -8,9 +8,9 @@ import model.Constants;
 import model.Employee;
 import model.EmployeeDatabase;
 
-public class NewEmployeeFrame extends JFrame {
+public class NewEmployeeFrame extends mainMenuFunctions {
     private final adminUI parentFrame;
-    private final JTextField 
+    private JTextField 
                         employeeNoField, 
                         lastNameField, 
                         firstNameField, 
@@ -29,17 +29,19 @@ public class NewEmployeeFrame extends JFrame {
                         clothingallowField, 
                         grossemiField, 
                         hourrateField;
-    private final JSpinner yearSpinner;
-    private final JSpinner monthSpinner;
-    private final JSpinner daySpinner;
+    private JSpinner yearSpinner;
+    private JSpinner monthSpinner;
+    private JSpinner daySpinner;
 
     public NewEmployeeFrame(adminUI parent) {
+        super("Add New Employee");
         this.parentFrame = parent;
-        setTitle("New Employee");
-        setSize(500, 600);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setResizable(false);
+        initUI();
+    }
+    
+    @Override
+    protected void initUI() {
+        setSize(UIConstants.NEW_EMPLOYEE_WINDOW_SIZE);       
 
         // Create main panel with padding
         JPanel mainPanel = new JPanel(new BorderLayout(0, 10));
@@ -60,26 +62,46 @@ public class NewEmployeeFrame extends JFrame {
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Initialize fields
-        employeeNoField = createField("Enter employee number");
-        lastNameField = createField("Enter last name");
-        firstNameField = createField("Enter first name");
-        addressField = createField("Enter employee's address");
-        contactField = createField("Format: 09XXXXXXXXX");
-        sssField = createField("Format: XX-XXXXXXX-X");
-        philhealthField = createField("Format: XX-XXXXXXXXX-X");
-        tinField = createField("Format: XXX-XXX-XXX");
-        pagibigField = createField("Format: XXXX-XXXX-XXXX");
-        statusField = createField("Enter employee status");
-        positionField = createField("Enter employee's position");
-        bossField = createField("Enter direct supervisor");
-        basesalaryField = createField("Input base salary");
-        ricesubField = createField("Input rice subsidy");
-        phoneallowField = createField("Input phone allowance");
-        clothingallowField = createField("Input clothing allowance");
-        grossemiField = createField("Enter gross semi-monthly rate");
-        hourrateField = createField("Input hourly rate");
+        // Initialize fields with hints
+        employeeNoField = new JTextField("Enter employee number");
+        lastNameField = new JTextField("Enter last name");
+        firstNameField = new JTextField("Enter first name");
+        addressField = new JTextField("Enter employee's address");
+        contactField = new JTextField("Format: 09XXXXXXXXX");
+        sssField = new JTextField("Format: XX-XXXXXXX-X");
+        philhealthField = new JTextField("Format: XX-XXXXXXXXX-X");
+        tinField = new JTextField("Format: XXX-XXX-XXX");
+        pagibigField = new JTextField("Format: XXXX-XXXX-XXXX");
+        statusField = new JTextField("Enter employee status");
+        positionField = new JTextField("Enter employee's position");
+        bossField = new JTextField("Enter direct supervisor");
+        basesalaryField = new JTextField("Input base salary");
+        ricesubField = new JTextField("Input rice subsidy");
+        phoneallowField = new JTextField("Input phone allowance");
+        clothingallowField = new JTextField("Input clothing allowance");
+        grossemiField = new JTextField("Enter gross semi-monthly rate");
+        hourrateField = new JTextField("Input hourly rate");
 
+        // put tooltips on hover (same info)
+        employeeNoField.setToolTipText("Enter employee number");
+        lastNameField.setToolTipText("Enter last name");
+        firstNameField.setToolTipText("Enter first name");
+        addressField.setToolTipText("Enter employee's address");
+        contactField.setToolTipText("Format: 09XXXXXXXXX");
+        sssField.setToolTipText("Format: XX-XXXXXXX-X");
+        philhealthField.setToolTipText("Format: XX-XXXXXXXXX-X");
+        tinField.setToolTipText("Format: XXX-XXX-XXX");
+        pagibigField.setToolTipText("Format: XXXX-XXXX-XXXX");
+        statusField.setToolTipText("Enter employee status");
+        positionField.setToolTipText("Enter employee's position");
+        bossField.setToolTipText("Enter direct supervisor");
+        basesalaryField.setToolTipText("Input base salary");
+        ricesubField.setToolTipText("Input rice subsidy");
+        phoneallowField.setToolTipText("Input phone allowance");
+        clothingallowField.setToolTipText("Input clothing allowance");
+        grossemiField.setToolTipText("Enter gross semi-monthly rate");
+        hourrateField.setToolTipText("Input hourly rate");
+        
         // Date spinners
         LocalDate now = LocalDate.now();
         int currentYear = now.getYear();

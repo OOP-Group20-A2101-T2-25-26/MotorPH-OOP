@@ -17,9 +17,13 @@ public class UIConstants {
     public static final Font BUTTON_FONT = new Font("SansSerif", Font.PLAIN, 12);
 
     // Dimensions
+    public static final Dimension LOGIN_WINDOW_SIZE = new Dimension(400, 250);
     public static final Dimension MAIN_WINDOW_SIZE = new Dimension(920, 620);
     public static final Dimension DETAIL_WINDOW_SIZE = new Dimension(600, 600);
     public static final Dimension NEW_EMPLOYEE_WINDOW_SIZE = new Dimension(500, 600);
+    public static final Dimension EDIT_EMPLOYEE_WINDOW_SIZE = new Dimension(1280, 720);
+    public static final Dimension PAYROLL_WINDOW_SIZE = new Dimension(400, 300);
+    public static final Dimension PAYSLIP_WINDOW_SIZE = new Dimension(400, 400);
     public static final int STANDARD_FIELD_WIDTH = 250;
 
     // Borders

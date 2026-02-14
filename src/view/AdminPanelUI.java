@@ -39,13 +39,12 @@ public class AdminPanelUI extends mainMenuFunctions {
     public AdminPanelUI(adminUI parentFrame) {
         super("Employee Administration");
         this.parentFrame = parentFrame;
-
         initUI();
     }
     
     @Override
     protected void initUI() {
-        setSize(1280, 720);
+        setSize(UIConstants.EDIT_EMPLOYEE_WINDOW_SIZE);
         setLayout(new BorderLayout(10, 10));
 
         // Employee Data Table

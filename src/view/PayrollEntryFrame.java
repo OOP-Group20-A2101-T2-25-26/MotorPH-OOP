@@ -21,7 +21,7 @@ public class PayrollEntryFrame extends mainMenuFunctions {
 
     @Override
     protected void initUI() {
-        setSize(400,300);
+        setSize(UIConstants.PAYROLL_WINDOW_SIZE);
         
         try {
             System.out.println("Loading application icon...");
@@ -82,10 +82,11 @@ public class PayrollEntryFrame extends mainMenuFunctions {
             // Every Government Deduction in a package: Witholding Tax, SSS, PhilHealth, Pag-ibig
             double all_deductions = employee.calc_witholding(gross) + employee.calc_SSS(gross) + employee.calc_philhealth(gross) + employee.calc_pagibig(gross);
             
+            // Remove this for now... and add it later maybe... currently it causes an exception due to the original csv formatting.
             // Every Company Allowance: Rice Subsidy, Phone Allowance and Clothing Allowance
             //double all_allowances = Double.parseDouble(employee.getRiceSubsidy()) + Double.parseDouble(employee.getPhoneAllowance()) + Double.parseDouble(employee.getClothingAllowance());
             
-            //
+            // NetPay is lacking allowances for now.
             double netPay = gross - all_deductions; // + all_allowances;
 
             // Open the final Payslip View

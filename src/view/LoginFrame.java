@@ -24,8 +24,8 @@ public class LoginFrame extends mainMenuFunctions {
     
     @Override
     protected void initUI() {
-        setSize(400, 250);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(UIConstants.LOGIN_WINDOW_SIZE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

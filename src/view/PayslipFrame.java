@@ -28,7 +28,7 @@ public class PayslipFrame extends mainMenuFunctions {
     
     @Override
     protected void initUI() {
-        setSize(400,500);
+        setSize(UIConstants.PAYSLIP_WINDOW_SIZE);
         
         try {
             System.out.println("Loading application icon...");
