@@ -1,10 +1,10 @@
 # MotorPH Employee App by Group 20
 
-A Java Swing-based desktop application for managing employee data, attendance, and payroll.
+A Java Swing-based desktop application for managing employee data and payroll.
 
 ## Features
 - Add and manage employee records
-- Compute payroll (with gross pay, deductions, and net salary accounted for)
+- Compute payroll (Manual hours entry; Gross Pay, Deductions, and Net Ssalary accounted for)
 - Export/import employee data via CSV
 - Clean and intuitive user interface
 
